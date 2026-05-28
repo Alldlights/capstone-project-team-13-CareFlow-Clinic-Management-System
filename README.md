@@ -1,4 +1,10 @@
 # capstone-project-team-13-CareFlow-Clinic-Management-System
-A Clinic Management System<br>
-Frontend Developers for this project are:<br>
-Christian Emeka Ekoh
+
+## Team Members
+- Christian Emeka Ekoh
+
+## Project Description
+[to be added]
+
+## How to Run
+Open index.html in any browser
