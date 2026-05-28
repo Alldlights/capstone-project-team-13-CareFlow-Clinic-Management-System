@@ -1,12 +1,24 @@
-# capstone-project-team-13-CareFlow-Clinic-Management-System
+# CareFlow - Clinic Management System
 
-## Team Members
+Lightweight, offline-capable clinic management for Nigerian community health centres.
+
+## Team Members/ Contributors
 - Christian Emeka Ekoh
 - David Opara
 
-## Project Description
-[to be added]
+## Core Features
+- Patient Registration – Register patients in under 3 minutes
+- Quick Consult (EMR) – Record notes in under 60 seconds
+- Smart Queue – Live patient tracking with status badges
+- Appointment Scheduling – Conflict-free booking
+- Billing & Payments – Itemised invoices, multiple payment methods
+- Dashboard & Reports – Live KPI metrics and PDF export
+- Receipt Generation – Print or WhatsApp share
+- Offline Mode – Works without internet, auto-syncs when back online
 
-## How to Run
-Open index.html in any browser
-=======
+
+## Tech Stack
+HTML | CSS | JavaScript
+
+## Project Status
+Ongoing
