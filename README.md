@@ -5,6 +5,7 @@ Lightweight, offline-capable clinic management for Nigerian community health cen
 ## Team Members/ Contributors
 - Christian Emeka Ekoh
 - David Opara
+- Ogechukwu Onuora
 
 ## Core Features
 - Patient Registration – Register patients in under 3 minutes
