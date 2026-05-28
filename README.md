@@ -1,5 +1,4 @@
 # capstone-project-team-13-CareFlow-Clinic-Management-System
-<<<<<<< HEAD
 
 ## Team Members
 - Christian Emeka Ekoh
