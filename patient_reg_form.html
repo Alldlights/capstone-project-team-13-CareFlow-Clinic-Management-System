@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareFlow- Patient Registration</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Young+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>CareFlow</h1>
+                <p>Clinical Management</p>
+            </div>
+            <div class="sidebar-img">
+                <div class="img">R <span class="online-dot"></span></div>
+                <p>Receptionist's Profile</p>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-item"><i class="fa-solid fa-grip"></i></i><span> Dashboard</span></div>
+                <div class="nav-item active"><i class="fas fa-user-injured"></i><span> Patient</span></div>
+                <div class="nav-item"><i class="fa-solid fa-scroll"></i><span> Queue</span></div>
+                <div class="nav-item"><i class="fas fa-calendar-check"></i><span> Appointments</span></div>
+                <div class="nav-item"><i class="fa-solid fa-gear"></i><span> Settings</span></div>
+            </div>
+            <div class="doc-profile">
+                <div class="img-doc"><img src="" alt="Doctor's Image"></div>
+                <div class="bio">
+                    <h3>Dr. Kelechi</h3>
+                    <p>Administrator</p>
+                </div>
+            </div>
+        </aside>
+        <div class="empty">
+            <h1>Patient Registration</h1>
+            <p>Register Patient Information quickly</p>
+        </div>
+
+        <div class="mini-nav">
+            <button class="active">New Patient</button>
+            <button>Search Patient</button>
+            <button>Walk-in History</button>
+        </div>
+
+        <!-- nain page -->
+         <main class="form-container">
+            <div class="registration-form">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h2>Personal Information</h2>
+                    <div class="form-grid">
+                        <div class="form-field name">
+                            <label>Full Name <span class="required">*</span></label>
+                            <input type="text" placeholder="Enter full name">
+                        </div>
+
+                        <div class="form-field dob">
+                            <label>Date of Birth <span class="required">*</span></label>
+                            <input type="text" placeholder="DD/MM/YYYY">
+                        </div>
+
+                        <div class="form-field gender">
+                            <label>Gender <span class="required">*</span></label>
+                            <select>
+                                <option>Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field phone">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <div class="phone-wrapper">
+                                <select>
+                                    <option>+234</option>
+                                    <option>+1</option>
+                                    <option>+44</option>
+                                </select>
+                                <input type="tel" placeholder="Enter phone number">
+                            </div>
+                        </div>
+
+                        <div class="form-field full-width address">
+                            <label>Address <span class="required">*</span></label>
+                            <input type="text" placeholder="Enter full address">
+                        </div>
+
+                        <div class="form-field sor">
+                            <label>State of Origin</label>
+                            <select>
+                                <option>Select state of origin</option>
+                                <option>Lagos</option>
+                                <option>Abuja</option>
+                                <option>Kano</option>
+                                <option>Rivers</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field patient-id">
+                            <div class="review">Patient ID Review</div>
+                            <div class="auto">Auto-generated after saving</div>
+                            <div class="dot-blue"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Contact Section -->
+                <div class="form-section">
+                    <h2>Emergency Contact</h2>
+                    <div class="form-grid  form-grid-emergency">
+                        <div class="form-field contact">
+                            <label>Contact Name <span class="required">*</span></label>
+                            <input type="text" placeholder="Enter contact name">
+                        </div>
+
+                        <div class="form-field rel">
+                            <label>Relationship <span class="required">*</span></label>
+                            <select>
+                                <option>Select relationship</option>
+                                <option>Spouse</option>
+                                <option>Parent</option>
+                                <option>Sibling</option>
+                                <option>Friend</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field phone-num">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <div class="phone-wrapper">
+                                <select>
+                                    <option>+234</option>
+                                    <option>+1</option>
+                                    <option>+44</option>
+                                </select>
+                                <input type="tel" placeholder="Enter phone number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information Section -->
+                <div class="form-section">
+                    <h2>Additional Information</h2>
+                    <div class="form-grid form-grid-emergency">
+                        <div class="form-field group">
+                            <label>Blood Group</label>
+                            <select>
+                                <option>Select blood group</option>
+                                <option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB+</option>
+                                <option>AB-</option>
+                                <option>O+</option>
+                                <option>O-</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field gen">
+                            <label>Genotype</label>
+                            <select>
+                                <option>Select genotype</option>
+                                <option>AA</option>
+                                <option>AS</option>
+                                <option>AC</option>
+                                <option>SS</option>
+                                <option>SC</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field full-width allergies">
+                            <label>Allergies</label>
+                            <textarea rows="1" placeholder="Enter any allergies"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="save-btn">
+                    <button>Save Patient</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

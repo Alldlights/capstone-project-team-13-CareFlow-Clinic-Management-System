@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'ancizar serif', sans-serif;
+    font-size: 14px;
+    background-color: #edeeef;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;     /* Sidebar fixed width, rest fills */
+    grid-template-rows: auto auto auto;    /* 3 rows: auto, auto, fills remaining */
+    grid-template-areas: 
+        "sidebar empty"
+        "sidebar mini-nav"
+        "sidebar form-container";
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Assign grid areas */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #edeeef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.empty {
+    grid-area: empty;
+    background: #ffffff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom:2px solid #edeeef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.empty h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.empty p {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-left: 10px;
+}
+
+.mini-nav {
+    grid-area: mini-nav;
+    margin-top: 18px;
+    margin-left: 10px;
+    
+}
+
+.mini-nav .active{
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.mini-nav button {
+    padding: 12px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: .8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-container {
+    grid-area: form-container;
+    padding: 40px;
+    margin-left: -23px;
+    margin-right: -23px;
+    margin-bottom: -20px;
+    margin-top: -15px;
+}
+
+.registration-form {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.form-section {
+    margin-bottom: 32px;
+}
+.form-section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 24px;
+    grid-template-areas: 
+    "name dob gender patient-id"
+    "phone sor sor patient-id"
+    "address address address address";
+}
+
+.name {
+    grid-area: name;
+}
+.dob {
+    grid-area: dob;
+}
+.gender {
+    grid-area: gender;
+}
+.phone {
+    grid-area: phone;
+}
+.sor {
+    grid-area: sor;
+}
+.address {
+    grid-area: address;
+    width: 100%;
+}
+
+.form-grid-emergency{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 24px;
+    grid-template-areas: 
+    "contact rel phone-num"
+    "group gen allergies";
+}
+
+.contact{
+    grid-area: contact;
+}
+.rel {
+    grid-area: rel;
+}
+.phone-num{
+    grid-area: phone-num;
+}
+
+.group {
+    grid-area: group;
+}
+.gen{
+    grid-area: gen;
+}
+.allergies{
+    grid-area: allergies;
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label{
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.form-field .required {
+    color: red;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-field textarea{
+    overflow: auto;
+}
+
+select {
+    background-color: #f8fafc;
+    padding: 10px;
+    border-radius: 8px;
+    color: #9ca3af;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #9ca3af;
+}
+
+.phone-wrapper{
+    display: flex;
+}
+
+.phone-wrapper select {
+    width: 80px;
+}
+
+.phone-wrapper input {
+    flex: 1;
+}
+
+.patient-id{
+    border: 2px solid #2563eb;
+    grid-area: patient-id;
+}
+
+.review{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    color: #2563eb;
+    padding: 5px;
+}
+.auto {
+    margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.dot-blue{
+    background-color: #2563eb;
+    width: 100%;
+    height: 40px;
+    margin-top: 44px;
+}
+
+ /* Save button */
+.save-btn {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    
+}
+
+.save-btn button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+}
+
+.save-btn button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Sidebar styles */
+.sidebar-header {
+    margin-top: 15px;
+    padding: 20px;
+    text-align: center;
+    line-height: 0.8;
+}
+
+.sidebar-header h1 {
+    color: #2563eb;
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.sidebar-header p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.sidebar-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    margin-top: 35px;
+    margin-left: -10px;
+}
+
+.img {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #edeeef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;;
+}
+
+.online-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.sidebar-img p {
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.nav-menu {
+    flex: 1;
+    padding: 20px;
+    margin-top: -35px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    margin: 4px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #4b5563;
+}
+
+.nav-item i {
+    width: 30px;
+    font-size: 18px;
+}
+
+.nav-item:hover {
+    background-color: #eff6ff;
+    color: #7ea4f9
+}
+
+.nav-item.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+.doc-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: auto;
+}
+
+.img-doc {
+    width: 45px;
+    height: 45px;
+    background: #7ea4f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* If you want a placeholder icon for doctor */
+.img-doc::before {
+    content: "👨‍⚕️";
+    font-size: 24px;
+}
+
+.bio h3 {
+    font-size: 14px;
+    margin-bottom: 3px;
+    color: #1f2937;
+}
+
+.bio p {
+    font-size: 11px;
+    color: #6b7280;
+}
+
