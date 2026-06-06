@@ -6,98 +6,104 @@
     <link rel="shortcut icon" href="assets/logo/care.png" type="image/x-icon" />
     <title>Quick Consult Form</title>
     <!-- css -->
-    <link rel="stylesheet" href="quick-consult.css" />
+    <link rel="stylesheet" href="css/quick-consult.css" />
   </head>
   <body>
-    <aside>
-      <div class="side-bar-container">
-        <div class="side-bar">
-          <h1 class="side-bar-title">CareFlow</h1>
-          <p class="side-bar-subtitle">Clinical Management</p>
+    <div class="body-container">
+      <aside>
+        <div class="side-bar-container">
+          <div class="side-bar">
+            <h1 class="side-bar-title">CareFlow</h1>
+            <p class="side-bar-subtitle">Clinical Management</p>
 
-          <!-- side profile -->
-          <div class="side-profile">
-            <h1 class="side-p">P</h1>
-            <p>Patient's profile</p>
+            <!-- side profile -->
+            <div class="side-profile">
+              <div class="online-profile">
+                <h1 class="side-p">P</h1>
+                <span class="online"></span>
+              </div>
+              <p>Patient's profile</p>
+            </div>
+            <!-- side links -->
+            <div class="side-links">
+              <a href="#">
+                <span>
+                  <ion-icon name="grid-outline"></ion-icon>
+                  Dashboard
+                </span>
+              </a>
+
+              <a href="#">
+                <span>
+                  <ion-icon name="bar-chart-outline"></ion-icon>
+                  Quick Consult Form
+                </span>
+              </a>
+
+              <a href="#">
+                <span>
+                  <ion-icon name="receipt-outline"></ion-icon>
+                  Billings
+                </span>
+              </a>
+
+              <a href="#">
+                <span>
+                  <ion-icon name="settings-outline"></ion-icon>
+                  Settings
+                </span>
+              </a>
+            </div>
           </div>
-          <!-- side links -->
-          <div class="side-links">
-            <a href="#">
-              <span>
-                <ion-icon name="grid-outline"></ion-icon>
-                Dashboard
-              </span>
-            </a>
 
-            <a href="#">
-              <span>
-                <ion-icon name="bar-chart-outline"></ion-icon>
-                Quick Consult Form
-              </span>
-            </a>
-
-            <a href="#">
-              <span>
-                <ion-icon name="receipt-outline"></ion-icon>
-                Billings
-              </span>
-            </a>
-
-            <a href="#">
-              <span>
-                <ion-icon name="settings-outline"></ion-icon>
-                Settings
-              </span>
-            </a>
+          <!-- side footer    -->
+          <div class="side-footer">
+            <img src="assets/50016a8c9ef67cd3dbf61f9097cbf942.jpg" alt="side bar image" />
+            <div class="footer-text">
+              <p class="footer-p">Dr. Okechi</p>
+              <p>Administrator</p>
+            </div>
           </div>
         </div>
+      </aside>
 
-        <!-- side footer    -->
-        <div class="side-footer">
-          <img src="assets/50016a8c9ef67cd3dbf61f9097cbf942.jpg" alt="side bar image" />
-          <div class="footer-text">
-            <p class="footer-p">Dr. Okechi</p>
-            <p>Administrator</p>
+      <!-- Top header -->
+
+      <header>
+        <div class="top-header">
+          <div class="top-group">
+            <ion-icon name="search-outline"> </ion-icon>
+            <input type="text" id="search" class="search" placeholder="Search patient history, diagnosis, prescriptions..." />
           </div>
         </div>
-      </div>
-    </aside>
-
-    <!-- Top header -->
-
-    <header>
-      <div class="top-header">
-        <div class="top-group">
-          <ion-icon name="search-outline"> </ion-icon>
-          <input type="text" id="search" class="search" placeholder="Search patient history, diagnosis, prescriptions..." />
+        <div class="top-icons">
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-icon name="location-outline"></ion-icon>
+          <ion-icon name="time-outline"></ion-icon>
         </div>
-      </div>
-      <div class="top-icons">
-        <ion-icon name="notifications-outline"></ion-icon>
-        <ion-icon name="location-outline"></ion-icon>
-        <ion-icon name="time-outline"></ion-icon>
-      </div>
-    </header>
+      </header>
 
-    <!-- Main contents -->
-    <main class="main-container">
-      <div class="main-contents">
-        <svg class="main-svg" xmlns="http://www.w3.org/2000/svg" width="15" height="50" fill="#11c636" viewBox="0 0 256 256">
-          <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
-        </svg>
-        <h1 class="main-h1">SUCCESS!</h1>
-        <p class="main-p">Consultation Saved</p>
-        <p class="main-p">Patient moved to billing</p>
-      </div>
-    </main>
+      <!-- Main contents -->
+      <main class="main-container">
+        <div class="main-contents">
+          <svg class="main-svg" xmlns="http://www.w3.org/2000/svg" width="15" height="50" fill="#11c636" viewBox="0 0 256 256">
+            <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
+          </svg>
+          <h1 class="main-h1">SUCCESS!</h1>
+          <p class="main-p">Consultation Saved</p>
+          <p class="main-p">Patient moved to billing</p>
+        </div>
+      </main>
 
-    <!-- main icons -->
-    <div class="main-icons-wrapper">
-      <div class="main-icons">
-        <ion-icon class="medical-icon" name="medical"></ion-icon>
-        <ion-icon class="help-icon" name="help-outline"></ion-icon>
+      <!-- main icons -->
+      <div class="main-icons-wrapper">
+        <div class="main-icons">
+          <ion-icon class="medical-icon" name="medical"></ion-icon>
+          <ion-icon class="help-icon" name="help-outline"></ion-icon>
+        </div>
       </div>
     </div>
+
     <!-- ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
