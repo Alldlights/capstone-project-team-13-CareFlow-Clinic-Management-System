@@ -1,0 +1,269 @@
+/* resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+.block {
+  display: block;
+}
+
+/* variables */
+:root {
+  --navbar-width: 317px;
+}
+
+
+.navbar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: var(--navbar-width);
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+
+  background: #FDFDFF;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+}
+
+.navbar-logo {
+  max-width: 100%;
+}
+
+.navbar-user-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.navbar-user-identifier {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 60px;
+  height: 60px;
+
+  background: #D9D9D9;
+  border-radius: 30px;
+}
+.navbar-user-initial {
+  font-size: 36px;
+  transform: translateY(-2px);
+}
+.navbar-user-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.navbar-user-status-badge {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  top: -1px;
+  right: -1px;
+
+  background: #008000;
+  border-radius: 30px;
+}
+.navbar-user-role {
+  font-size: 20px;
+}
+
+.navbar-menu {
+  color: #5D5F5F;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.navbar-menu-item {
+  background: #FFFFFF;
+  color: #5D5F5F;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+.navbar-menu-item.active {
+  background: #004AC6;
+  color: #FFFFFF;
+}
+.navbar-menu-item-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-logout-button {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  background: #FFFFFF;
+  color: #5D5F5F;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.navbar-logout-button:hover, .navbar-menu-item:hover {
+  background: #F0F0F0;
+}
+.navbar-menu-item.active:hover {
+  background: #004AC6;
+}
+
+/* main */
+main {
+  margin-left: var(--navbar-width);
+  margin-top: 0px;
+}
+
+/* topbar */
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 40px;
+
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(93, 95, 95, 0.5);
+}
+.topbar-heading {
+  font-weight: 700;
+  font-size: 20px;
+}
+.topbar-subline {
+  font-size: 16px;
+  color: #5D5F5F;
+  opacity: 0.9;
+}
+
+
+.patient-search-page {
+  background: #00000025;
+  background: #f5f7fa;
+  height: 100vh;
+}
+
+
+.navigation-buttons {
+  width: fit-content;
+  margin: 0 40px;
+  padding: 20px 0px;
+}
+.navigation-buttons-list {
+  display: flex;
+  gap: 29px;
+}
+.navigation-button {
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  box-shadow: 0px 2px 2px 0px #00000040;
+  border-radius: 5px;
+  display: block;
+  background: #FFFFFF;
+}
+.navigation-button.active {
+  background: #004AC6;
+  color: #FFFFFF;
+}
+
+
+.searchbar  {
+  margin: 0px 20px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.search {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+.search-input-container {
+  height: 54px;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  gap: 48px;
+  border-radius: 5px;
+  border: 1px solid #00000025;
+  margin-bottom: 20px;
+}
+.search-input {
+  border: none;
+  font-size: 16px;
+  margin-right: 12px;
+  background: inherit;
+}
+.search-input:focus {
+  outline: none;
+}
+.search-buttons-container {
+  display: flex;
+  gap: 24px;
+}
+.search-filter {
+  height: 54px;
+  width: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00000025;
+  border-radius: 5px;
+}
+.search-button {
+  height: 54px;
+  font-size: 20px;
+  border-radius: 5px;
+  background: #004AC6;
+  color: #FFFFFF;
+  padding: 0px 50px;
+}
+
+
+.quick-access {
+  padding: 20px;
+  background: #FFFFFF;
+}
+.quick-access-heading {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.quick-access-buttons {
+  display: flex;
+  gap: 46px;
+}
+.quick-access-button {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #5D5F5F80;
+  align-items: center;
+  height: 54px;
+  max-width: 178px;
+  font-weight: 600;
+  font-size: 12px;
+}
