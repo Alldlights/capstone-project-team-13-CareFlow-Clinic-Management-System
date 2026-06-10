@@ -85,6 +85,13 @@ body {
     cursor: pointer;
 }
 
+.mini-nav a{
+    text-decoration: none;
+}
+.mini-nav a:visited {
+    color: #333
+}
+
 .form-container {
     grid-area: form-container;
     padding: 40px;
