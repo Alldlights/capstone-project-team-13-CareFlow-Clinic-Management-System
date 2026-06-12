@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/logo/care.png" type="image/x-icon" />
+    <title>Quick Consult Form</title>
+    <!-- css -->
+    <link rel="stylesheet" href="../css/quick-consult-form.css" />
+  </head>
+  <body>
+    <div class="body-container">
+      <aside>
+        <div class="side-bar-container">
+          <div class="side-bar">
+            <!-- <h1 class="side-bar-title">CareFlow</h1>
+            <p class="side-bar-subtitle">Clinical Management</p> -->
+            <img src="../assets/logo/transparent logo.png" alt="" />
+
+            <!-- side profile -->
+            <div class="side-profile">
+              <div class="online-profile">
+                <h1 class="side-p">P</h1>
+                <span class="online"></span>
+              </div>
+              <p>Patient's profile</p>
+            </div>
+            
+            <!-- side links -->
+            <div class="side-links">
+              <a href="#">
+                <span>
+                  <ion-icon name="grid-outline"></ion-icon>
+                  Dashboard
+                </span>
+              </a>
+
+              <a href="#">
+                <span>
+                  <ion-icon name="bar-chart-outline"></ion-icon>
+                  Quick Consult Form
+                </span>
+              </a>
+
+              <a href="#">
+                <span>
+                  <ion-icon name="receipt-outline"></ion-icon>
+                  Billings
+                </span>
+              </a>
+
+              <a href="#">
+                <span>
+                  <ion-icon name="settings-outline"></ion-icon>
+                  Settings
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- side footer    -->
+          <div class="side-footer">
+            <img src="../assets/50016a8c9ef67cd3dbf61f9097cbf942.jpg" alt="side bar image" />
+            <div class="footer-text">
+              <p class="footer-p">Dr. Okechi</p>
+              <p>Administrator</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Top header -->
+
+      <header>
+        <div class="top-header">
+          <div class="top-group">
+            <ion-icon name="search-outline"> </ion-icon>
+            <input type="text" id="search" class="search" placeholder="Search patient history, diagnosis, prescriptions..." />
+          </div>
+        </div>
+        <div class="top-icons">
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-icon name="location-outline"></ion-icon>
+          <ion-icon name="time-outline"></ion-icon>
+        </div>
+      </header>
+
+
+
+      <main class="main-container">
+        <section class="consult-section">
+          <!-- Patient Card -->
+          <div class="patient-card">
+            <div class="patient-avatar">JO</div>
+
+            <div class="patient-info">
+              <h2>Justin Okoro</h2>
+              <div class="patient-meta">
+                <span>#0023</span>
+                <span>A+</span>
+                <span>M</span>
+                <span>AA</span>
+                <span>28</span>
+              </div>
+            </div>
+
+            <div class="patient-extra">
+              <p>Allergy: Ibuprofen</p>
+              <p>Last Visit: 19 May 2026</p>
+            </div>
+          </div>
+
+          <!-- Consult Form -->
+          <div class="consult-form">
+            <h1>QUICK CONSULT FORM</h1>
+
+            <label>Chief Complaint *</label>
+            <input type="text" />
+
+            <label>Diagnosis / Sickness *</label>
+            <textarea></textarea>
+
+            <label>Prescription / Treatment Plan *</label>
+            <textarea></textarea>
+
+            <select>
+              <option>Patient vitals, Lab requests, Referral, Follow-up date</option>
+            </select>
+
+            <div class="form-buttons">
+              <button class="save-btn">Save & Complete</button>
+              <button class="draft-btn">Save As Draft</button>
+            </div>
+
+            <div class="note">Saving this form completes consult and automatically moves patient to billing queue</div>
+          </div>
+        </section>
+
+        <!-- Patient History -->
+        <aside class="history-section">
+          <h2>Patient History</h2>
+
+          <ul>
+            <li>19 May 2026</li>
+            <li>28 Feb 2026</li>
+            <li>01 Dec 2025</li>
+            <li>16 Oct 2025</li>
+            <li>02 Aug 2025</li>
+            <li>17 Jun 2025</li>
+          </ul>
+        </aside>
+      </main>
+
+      <div class="main-icons-wrapper">
+        <div class="main-icons">
+          <ion-icon class="medical-icon" name="medical"></ion-icon>
+          <ion-icon class="help-icon" name="help-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
