@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CareFlow — Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg-page:#F5F7FB;
+  --bg-white:#FFFFFF;
+  --bg-blue-light:#DBEAFE;
+  --bg-green-light:#C9F4D4;
+  --bg-red-light:#FEE2E2;
+  --bg-teal-light:#CCFBF1;
+  --bg-amber-light:#FEF3C7;
+  --accent-blue:#004AC6;
+  --accent-blue-mid:#2563EB;
+  --accent-teal:#0F766E;
+  --accent-amber:#F59E0B;
+  --accent-red:#EF4444;
+  --text-primary:#111827;
+  --text-secondary:#6B7280;
+  --text-muted:#9CA3AF;
+  --border:#E5E7EB;
+  --sidebar-w:220px;
+  --topbar-h:64px;
+  --radius-sm:8px;
+  --radius-md:12px;
+}
+
+body{
+  font-family:'Open Sans',sans-serif;
+  background:var(--bg-page);
+  color:var(--text-primary);
+  min-height:100vh;
+  display:flex;
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w);
+  min-height:100vh;
+  background:var(--bg-white);
+  display:flex;
+  flex-direction:column;
+  flex-shrink:0;
+  padding:0 0 24px;
+  gap:16px;
+}
+
+.sidebar__logo{
+  padding:16px 8px 12px;
+}
+
+.sidebar__logo img{
+  width:100%;
+}
+
+.sidebar__label{
+  font-family:'Inter',sans-serif;
+  font-weight:800;
+  font-size:20px;
+  color:var(--text-secondary);
+  letter-spacing:0.8px;
+  padding:0 20px 32px;
+}
+
+.sidebar__nav{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  padding:0 12px;
+  flex:1;
+}
+
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:var(--radius-sm);
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  color:var(--text-secondary);
+  cursor:pointer;
+  text-decoration:none;
+  transition:background 0.15s;
+}
+
+.nav-item:hover{background:var(--bg-page)}
+
+.nav-item--active{
+  background:var(--accent-blue);
+  color:#fff;
+}
+
+.nav-item svg{flex-shrink:0;opacity:0.75}
+.nav-item--active svg{opacity:1}
+
+/* ── MAIN ── */
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+
+/* ── TOPBAR ── */
+.topbar{
+  height:var(--topbar-h);
+  background:var(--bg-white);
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:0 28px;
+  flex-shrink:0;
+}
+
+.topbar__search{
+  flex:1;
+  max-width:360px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--bg-page);
+  border-radius:var(--radius-sm);
+  padding:8px 12px;
+}
+
+.topbar__search input{
+  border:none;
+  background:transparent;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  color:var(--text-primary);
+  outline:none;
+  width:100%;
+}
+
+.topbar__search input::placeholder{color:var(--text-muted)}
+
+.topbar__actions{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-left:auto;
+}
+
+.topbar__icon-btn{
+  position:relative;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--bg-white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.topbar__badge{
+  position:absolute;
+  top:-4px;
+  right:-4px;
+  width:16px;
+  height:16px;
+  background:#EF4444;
+  border-radius:50%;
+  font-size:10px;
+  font-weight:700;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.topbar__user{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.topbar__avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--bg-blue-light);
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.topbar__avatar img{width:100%;height:100%;object-fit:cover}
+
+.topbar__user-info{display:flex;flex-direction:column}
+
+.topbar__user-name{
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-primary);
+  line-height:1.3;
+}
+
+.topbar__user-role{
+  font-size:12px;
+  color:var(--text-secondary);
+}
+
+/* ── PAGE CONTENT ── */
+.content{
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  overflow-y:auto;
+}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+
+.page-header__text h1{
+  font-family:'Open Sans',sans-serif;
+  font-weight:700;
+  font-size:28px;
+  color:var(--text-primary);
+  line-height:1.3;
+}
+
+.page-header__text p{
+  font-size:15px;
+  color:var(--text-secondary);
+  margin-top:4px;
+}
+
+.date-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--bg-white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:8px 14px;
+  font-weight:700;
+  font-size:14px;
+  color:var(--text-primary);
+  cursor:pointer;
+  white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ── STATS ROW ── */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.stat-card{
+  background:var(--bg-white);
+  border-radius:var(--radius-md);
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.stat-card__body{display:flex;flex-direction:column;gap:4px}
+
+.stat-card__label{
+  font-size:13px;
+  color:var(--text-secondary);
+}
+
+.stat-card__value{
+  font-weight:700;
+  font-size:26px;
+  color:var(--text-primary);
+  line-height:1.2;
+}
+
+.stat-card__trend{
+  font-size:12px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.stat-card__trend--up{color:#058C32}
+.stat-card__trend--down{color:#FF8D28}
+
+.stat-card__icon{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.stat-card__icon--blue{background:#CAE6FF}
+.stat-card__icon--teal{background:#D1F0EE}
+.stat-card__icon--orange{background:#FFEAD7}
+.stat-card__icon--purple{background:#FAD9FF}
+
+/* ── MID ROW ── */
+.mid-row{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:16px;
+}
+
+.section-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.section-title{
+  font-weight:700;
+  font-size:17px;
+  color:var(--text-primary);
+}
+
+/* Revenue Chart */
+.revenue-chart{
+  background:var(--bg-white);
+  border-radius:var(--radius-md);
+  padding:24px;
+}
+
+.chart-filter-pill{
+  background:#F3F7FF;
+  border:none;
+  border-radius:var(--radius-sm);
+  padding:5px 14px;
+  font-weight:700;
+  font-size:13px;
+  color:var(--text-primary);
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.chart-area{
+  width:100%;
+  height:200px;
+}
+
+/* Appointment Overview */
+.appointment-overview{
+  background:var(--bg-white);
+  border-radius:var(--radius-md);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.donut-row{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.donut{
+  position:relative;
+  width:130px;
+  height:130px;
+  flex-shrink:0;
+}
+
+.donut svg{width:100%;height:100%}
+
+.donut__label{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.donut__label-value{
+  font-weight:700;
+  font-size:20px;
+  color:var(--text-primary);
+  line-height:1.1;
+}
+
+.donut__label-sub{
+  font-size:11px;
+  color:var(--text-secondary);
+}
+
+.appt-legend{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1;
+}
+
+.appt-legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+}
+
+.legend-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.appt-legend-item__label{flex:1;color:var(--text-primary)}
+.appt-legend-item__count{color:var(--text-muted);font-size:12px}
+
+/* ── BOTTOM ROW ── */
+.bottom-row{
+  display:grid;
+  grid-template-columns:1fr 260px 260px;
+  gap:16px;
+  align-items:start;
+}
+
+/* Recent Activities */
+.recent-activities{
+  background:var(--bg-white);
+  border-radius:var(--radius-md);
+  padding:24px;
+}
+
+.activity-list{
+  display:flex;
+  flex-direction:column;
+  margin-top:16px;
+}
+
+.activity-item{
+  display:flex;
+  gap:14px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.activity-item:last-child{border-bottom:none}
+
+.activity-item__dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  flex-shrink:0;
+  margin-top:4px;
+}
+
+.activity-item__text{
+  font-size:14px;
+  color:var(--text-primary);
+  line-height:1.4;
+}
+
+.activity-item__time{
+  font-size:13px;
+  color:var(--text-muted);
+  margin-top:3px;
+}
+
+/* Pending Tasks */
+.pending-tasks{
+  background:var(--bg-white);
+  border-radius:var(--radius-md);
+  padding:24px;
+}
+
+.task-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:16px;
+}
+
+.task-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  min-height: 60.5px;
+}
+
+.task-item--teal{background:var(--bg-teal-light)}
+.task-item--amber{background:var(--bg-amber-light)}
+
+.task-item__dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.task-item__label{
+  flex:1;
+  font-size:13px;
+  color:var(--text-primary);
+  font-weight:500;
+}
+
+.task-item__badge{
+  font-size:12px;
+  font-weight:600;
+}
+
+.task-item__badge--medium{color:var(--accent-teal)}
+.task-item__badge--pending{color:var(--accent-amber)}
+
+/* Today's Schedule */
+.todays-schedule{
+  background:var(--bg-white);
+  border-radius:var(--radius-md);
+  padding:24px;
+}
+
+.schedule-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:16px;
+}
+
+.schedule-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+}
+
+.schedule-item--teal{background:var(--bg-teal-light)}
+.schedule-item--amber{background:var(--bg-amber-light)}
+
+.schedule-item__dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  flex-shrink:0;
+  margin-top:4px;
+}
+
+.schedule-item__time{
+  font-weight:700;
+  font-size:13px;
+  color:var(--text-primary);
+}
+
+.schedule-item__label{
+  font-size:12px;
+  color:var(--text-muted);
+  margin-top:2px;
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar__logo">
+    <img src="transparent-logo.png" alt="CareFlow Logo" />
+  </div>
+
+  <p class="sidebar__label">Administrator<br>Active session</p>
+
+  <nav class="sidebar__nav">
+    <a class="nav-item nav-item--active" href="#">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </a>
+    <a class="nav-item" href="#">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      All Patients
+    </a>
+    <a class="nav-item" href="#">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Reports
+    </a>
+    <a class="nav-item" href="#">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      Users
+    </a>
+
+    <div>
+      <a class="nav-item" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </div>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar__search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search anything....." />
+    </div>
+
+    <div class="topbar__actions">
+      <div class="topbar__icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="topbar__badge">2</span>
+      </div>
+
+      <div class="topbar__icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="topbar__badge">2</span>
+      </div>
+
+      <div class="topbar__user">
+        <div class="topbar__avatar">
+          <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="38" fill="#DBEAFE"/><circle cx="19" cy="15" r="7" fill="#93C5FD"/><ellipse cx="19" cy="32" rx="12" ry="8" fill="#93C5FD"/></svg>
+        </div>
+        <div class="topbar__user-info">
+          <span class="topbar__user-name">Alexander Ricky</span>
+          <span class="topbar__user-role">Administrator</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div class="page-header__text">
+        <h1>Good Morning, Alex! 👋</h1>
+        <p>Here's what's happening with your hospital today.</p>
+      </div>
+      <button class="date-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        May 27, 2026
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-card__body">
+          <p class="stat-card__label">Total Patients</p>
+          <p class="stat-card__value">1,245</p>
+          <p class="stat-card__trend stat-card__trend--up">▲ 12.5% from last yesterday</p>
+        </div>
+        <div class="stat-card__icon stat-card__icon--blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0088FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__body">
+          <p class="stat-card__label">Revenue This Month</p>
+          <p class="stat-card__value">₦4.3M</p>
+          <p class="stat-card__trend stat-card__trend--up">▲ 8.6% from last month</p>
+        </div>
+        <div class="stat-card__icon stat-card__icon--teal">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#299E5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__body">
+          <p class="stat-card__label">Pending Bills</p>
+          <p class="stat-card__value">32</p>
+          <p class="stat-card__trend stat-card__trend--down">▼ 5.2% from yesterday</p>
+        </div>
+        <div class="stat-card__icon stat-card__icon--orange">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF8D28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__body">
+          <p class="stat-card__label">Staff On Duty</p>
+          <p class="stat-card__value">64</p>
+          <p class="stat-card__trend stat-card__trend--up">▲ 4.2% from yesterday</p>
+        </div>
+        <div class="stat-card__icon stat-card__icon--purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C026D3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- MID ROW -->
+    <div class="mid-row">
+
+      <div class="revenue-chart">
+        <div class="section-header">
+          <h2 class="section-title">Revenue Overview</h2>
+          <button class="chart-filter-pill">
+            This Month
+          </button>
+        </div>
+        <div style="position:relative; width:100%; height:220px">
+          <canvas id="revenue-chart"></canvas>
+        </div>
+      </div>
+
+      <div class="appointment-overview">
+        <h2 class="section-title">Appointment Overview</h2>
+        <div class="donut-row">
+          <div class="donut">
+            <svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="21" cy="21" r="17" fill="none" stroke="#E5E7EB" stroke-width="5"/>
+              <circle cx="21" cy="21" r="17" fill="none" stroke="#2563EB" stroke-width="5"
+                stroke-dasharray="50 50" stroke-dashoffset="25" stroke-linecap="butt"/>
+              <circle cx="21" cy="21" r="17" fill="none" stroke="#0F766E" stroke-width="5"
+                stroke-dasharray="34 66" stroke-dashoffset="75" stroke-linecap="butt"/>
+              <circle cx="21" cy="21" r="17" fill="none" stroke="#F59E0B" stroke-width="5"
+                stroke-dasharray="11 89" stroke-dashoffset="41" stroke-linecap="butt"/>
+              <circle cx="21" cy="21" r="17" fill="none" stroke="#EF4444" stroke-width="5"
+                stroke-dasharray="5 95" stroke-dashoffset="30" stroke-linecap="butt"/>
+            </svg>
+            <div class="donut__label">
+              <span class="donut__label-value">1,245</span>
+              <span class="donut__label-sub">Appointments</span>
+            </div>
+          </div>
+
+          <div class="appt-legend">
+            <div class="appt-legend-item">
+              <span class="legend-dot" style="background:#2563EB"></span>
+              <span class="appt-legend-item__label">Completed</span>
+              <span class="appt-legend-item__count">620</span>
+            </div>
+            <div class="appt-legend-item">
+              <span class="legend-dot" style="background:#0F766E"></span>
+              <span class="appt-legend-item__label">Scheduled</span>
+              <span class="appt-legend-item__count">420</span>
+            </div>
+            <div class="appt-legend-item">
+              <span class="legend-dot" style="background:#F59E0B"></span>
+              <span class="appt-legend-item__label">Cancelled</span>
+              <span class="appt-legend-item__count">140</span>
+            </div>
+            <div class="appt-legend-item">
+              <span class="legend-dot" style="background:#EF4444"></span>
+              <span class="appt-legend-item__label">No Show</span>
+              <span class="appt-legend-item__count">65</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+
+      <div class="recent-activities">
+        <h2 class="section-title">Recent Activities</h2>
+        <div class="activity-list">
+          <div class="activity-item">
+            <span class="activity-item__dot" style="background:#2563EB"></span>
+            <div>
+              <p class="activity-item__text">Payment Received from Michael Brown</p>
+              <p class="activity-item__time">2 minutes ago</p>
+            </div>
+          </div>
+          <div class="activity-item">
+            <span class="activity-item__dot" style="background:#0F766E"></span>
+            <div>
+              <p class="activity-item__text">New Patient Registration Completed</p>
+              <p class="activity-item__time">15 minutes ago</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pending-tasks">
+        <h2 class="section-title">Pending Tasks</h2>
+        <div class="task-list">
+          <div class="task-item task-item--teal">
+            <span class="task-item__dot" style="background:#0F766E"></span>
+            <span class="task-item__label">Inventory Restock</span>
+            <span class="task-item__badge task-item__badge--medium">Medium</span>
+          </div>
+          <div class="task-item task-item--amber">
+            <span class="task-item__dot" style="background:#F59E0B"></span>
+            <span class="task-item__label">Staff Shift Review</span>
+            <span class="task-item__badge task-item__badge--pending">Pending</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="todays-schedule">
+        <h2 class="section-title">Today's Schedule</h2>
+        <div class="schedule-list">
+          <div class="schedule-item schedule-item--teal">
+            <span class="schedule-item__dot" style="background:#0F766E"></span>
+            <div>
+              <p class="schedule-item__time">11:00 AM</p>
+              <p class="schedule-item__label">Patient Follow-Up</p>
+            </div>
+          </div>
+          <div class="schedule-item schedule-item--amber">
+            <span class="schedule-item__dot" style="background:#F59E0B"></span>
+            <div>
+              <p class="schedule-item__time">02:00 PM</p>
+              <p class="schedule-item__label">Staff Management Review</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const tickColor = '#6B7280';
+  new Chart(document.getElementById('revenue-chart'), {
+    type: 'line',
+    data: {
+      labels: ['Jun 3', 'Jun 8', 'Jun 15', 'Jun 20', 'Jun 25', 'Jun 29'],
+      datasets: [{
+        data: [1, 3.2, 4.1, 5.5, 8.2, 10, 8.7],
+        borderColor: '#2563EB',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#2563EB',
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        tension: 0.3,
+        fill: false,
+      }]
+    },  
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true },
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: {
+            color: tickColor,
+            font: { family: "'Open Sans', sans-serif", size: 11 },
+          },
+        },
+        y: {
+          grid: { color: '#E5E7EB', drawTicks: false },
+          border: { display: false },
+          min: 0,
+          max: 10,
+          ticks: {
+            stepSize: 2,
+            padding: 8,
+            color: tickColor,
+            font: { family: "'Open Sans', sans-serif", size: 11 },
+            callback: v => v === 0 ? 'N0' : `N${v}M`,
+          },
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
