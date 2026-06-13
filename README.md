@@ -8,6 +8,7 @@ Lightweight, offline-capable clinic management for Nigerian community health cen
 - David Opara
 - Ogechukwu Onuora
 - Sadisu Audu
+- Karen Ebhonuaye
 
 ## Core Features
 
