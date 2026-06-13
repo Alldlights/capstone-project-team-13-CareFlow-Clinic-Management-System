@@ -1,6 +1,6 @@
 # CareFlow - Clinic Management System
 
-Lightweight, offline-capable clinic management for Nigerian community health centres.
+A frontend clinic management interface for CareFlow. This repository contains the static pages, styling, and frontend authentication wiring for the CareFlow clinic system.
 
 ## Team Members/ Contributors
 
@@ -8,6 +8,7 @@ Lightweight, offline-capable clinic management for Nigerian community health cen
 - David Opara
 - Ogechukwu Onuora
 - Sadisu Audu
+- Karen Ebhonuaye
 
 ## Core Features
 
