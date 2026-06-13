@@ -31,19 +31,19 @@ function redirectToDashboard(user) {
   const role = user.role.toLowerCase();
   switch (role) {
     case 'admin':
-      window.location.href = 'dashboards/admin-dashboard.html';
+      window.location.href = '../dashboards/admin-dashboard.html';
       break;
     case 'doctor':
-      window.location.href = 'dashboards/doctors-dashboard.html';
+      window.location.href = '../dashboards/doctors-dashboard.html';
       break;
     case 'receptionist':
-      window.location.href = 'dashboards/receptionist-dashboard.html';
+      window.location.href = '../dashboards/receptionist-dashboard.html';
       break;
     case 'cashier':
-      window.location.href = 'dashboards/cashier-dashboard.html';
+      window.location.href = '../dashboards/cashier-dashboard.html';
       break;
     default:
-      window.location.href = 'dashboards/admin-dashboard.html';
+      window.location.href = '../dashboards/admin-dashboard.html';
       break;
   }
 }
