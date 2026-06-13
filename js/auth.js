@@ -36,9 +36,6 @@ function redirectToDashboard(user) {
     case 'doctor':
       window.location.href = '../dashboards/doctors-dashboard.html';
       break;
-    case 'receptionistx':
-      window.location.href = 'dashboards/receptionistx-dashboard.html';
-      break;
     case 'receptionist':
       window.location.href = '../dashboards/receptionist-dashboard.html';
       break;
@@ -53,12 +50,6 @@ function redirectToDashboard(user) {
 
 function handleLoginRedirect(user) {
   if (!user || !user.role) return;
-
-  const role = user.role.toLowerCase();
-  if (role === 'doctor' || role === 'receptionist') {
-    window.location.href = 'change-password.html';
-    return;
-  }
 
   redirectToDashboard(user);
 }
@@ -136,19 +127,20 @@ async function changePassword(event) {
   setMessage(message, 'Updating password...', 'success');
 
   try {
-    const response = await fetch(`${API_BASE}/staff/${user.id}`, {
-      method: 'PATCH',
+    const response = await fetch(`${API_BASE}/auth/update-password`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ password: newPassword }),
+      body: JSON.stringify({ oldPassword: currentPassword, newPassword }),
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
-      const errorMessage = errorData?.message || 'Unable to update password.';
+      const errorMessage = errorData?.message || `Unable to update password (${response.status}).`;
       setMessage(message, errorMessage, 'error');
+      console.error('Password update error:', errorData);
       return;
     }
 
@@ -161,16 +153,22 @@ async function changePassword(event) {
 }
 
 function initAuth() {
-  const loginForm = document.querySelector('.login-form');
-  const changeForm = document.querySelector('.login-form');
-
-  if (loginForm && window.location.pathname.endsWith('login.html')) {
-    loginForm.addEventListener('submit', loginUser);
+  const currentPath = window.location.pathname;
+  
+  // For login page
+  if (currentPath.includes('login.html')) {
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', loginUser);
+    }
   }
-
-  if (changeForm && window.location.pathname.endsWith('change-password.html')) {
-    changeForm.addEventListener('submit', changePassword);
+  
+  // For change password page
+  if (currentPath.includes('change-password.html')) {
+    const changeForm = document.querySelector('.change-password-form');
+    if (changeForm) {
+      changeForm.addEventListener('submit', changePassword);
+    }
   }
 }
-
 document.addEventListener('DOMContentLoaded', initAuth);

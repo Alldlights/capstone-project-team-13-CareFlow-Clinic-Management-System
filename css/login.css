@@ -33,11 +33,28 @@ body {
   justify-content: center;
   gap: 18px;
 }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.brand .logo-link {
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+.brand .logo-link:hover {
+  transform: scale(1.05);
+}
 .brand img {
-  width: 84px;
+  width: 120px;
   height: auto;
   display: block;
-  margin-bottom: 6px;
 }
 .title {
   font-size: 26px;
@@ -45,17 +62,20 @@ body {
   font-weight: 600;
 }
 
-.login-form {
+.login-form,
+.change-password-form {
   width: 100%;
   max-width: 320px;
 }
-.login-form label {
+.login-form label,
+.change-password-form label {
   display: block;
   margin: 12px 0 6px;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.95);
 }
-.login-form input {
+.login-form input,
+.change-password-form input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 6px;
