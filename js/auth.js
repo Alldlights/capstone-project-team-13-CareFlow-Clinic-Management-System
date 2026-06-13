@@ -36,11 +36,11 @@ function redirectToDashboard(user) {
     case 'doctor':
       window.location.href = 'dashboards/doctors-dashboard.html';
       break;
+    case 'receptionistx':
+      window.location.href = 'dashboards/receptionistx-dashboard.html';
+      break;
     case 'receptionist':
       window.location.href = 'dashboards/receptionist-dashboard.html';
-      break;
-    case 'cashier':
-      window.location.href = 'dashboards/cashier-dashboard.html';
       break;
     default:
       window.location.href = 'dashboards/admin-dashboard.html';
